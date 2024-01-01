@@ -11,12 +11,8 @@ import {
   MultiSelectItem,
 } from '@tremor/react'
 
-export default function ProjectsList({projectsData}) {
+export default function ProjectsList({projectsData, uniqueProjectIds}) {
   const [selectedProjectsIds, setSelectedProjectsIds] = useState([])
-
-  const uniqueProjectIds =  projectsData
-    .map((item) => item.IdProyecto)
-    .filter((value, index, self) => self.indexOf(value) === index)
 
   const isProjectSelected = (project) => {
     if (
@@ -40,22 +36,30 @@ export default function ProjectsList({projectsData}) {
           </MultiSelectItem>
         ))}
       </MultiSelect>
-      <Table className="mt-12 h-3/4 overflow-auto no-scrollbar">
+      <div className='w-full text-gray-600 font-bold flex justify-between mt-10 pr-12 pl-4 mb-4'>
+          <p>Id Proyecto</p>
+          <p>Id Aplicación</p>
+          <p>Tipo</p>
+          <p>Framework</p>
+          <p>Lenguaje</p>
+          <p>Breakpoints</p>
+        </div>
+      <Table className=" h-3/4 overflow-auto no-scrollbar">
         <TableBody>
           {projectsData
             .filter((item) => isProjectSelected(item))
             .map((item) => (
               <TableRow key={item._id}>
                 <TableCell>{item.IdProyecto}</TableCell>
-                <TableCell className="text-right">
+                <TableCell className="text-center">
                   {item.IdAplicacion}
                 </TableCell>
-                <TableCell className="text-right">
+                <TableCell className="text-center">
                   {item.TipoAplicacion}
                 </TableCell>
-                <TableCell className="text-right">{item.Framework}</TableCell>
-                <TableCell className="text-right">{item.Lenguaje}</TableCell>
-                <TableCell className="text-right">
+                <TableCell className="text-left">{item.Framework}</TableCell>
+                <TableCell className="text-left">{item.Lenguaje}</TableCell>
+                <TableCell className="text-left">
                   {item.Breakpoints.length}
                 </TableCell>
               </TableRow>

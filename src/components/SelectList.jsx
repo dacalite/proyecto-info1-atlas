@@ -10,37 +10,31 @@ import {
   Bold,
   BarList,
 } from '@tremor/react'
-
+import {
+  allowedFrameworks,
+  allowedLanguages,
+  allowedTypes,
+} from '@/utils/allowedTypes'
 
 const frameworkCategories = [
-  { key: 'all', name: 'Todos' },
-  { key: 'react', name: 'React' },
-  { key: 'vue', name: 'Vue' },
-  { key: 'svelte', name: 'Svelte' },
-  { key: 'vanilla', name: 'Vanilla' },
-  { key: 'spring', name: 'Spring' },
+  'Todos',
+  ...allowedFrameworks
 ]
 
 const TypeCategories = [
-  { key: 'all', name: 'Todos' },
-  { key: 'web', name: 'Web' },
-  { key: 'mobile', name: 'Móvil' },
-  { key: 'server', name: 'Servidor' },
-  { key: 'standalone', name: 'Standalone' },
+  'Todos',
+  ...allowedTypes
 ]
 
 const LanguageCategories = [
-  { key: 'all', name: 'Todos' },
-  { key: 'javascript', name: 'JavaScript' },
-  { key: 'typescript', name: 'TypeScript' },
-  { key: 'nodejs', name: 'NodeJS' },
-  { key: 'python', name: 'Python' },
-  { key: 'kotlin', name: 'Kotlin' },
-  { key: 'java', name: 'Java' },
+  'Todos',
+  ...allowedLanguages
 ]
 
 const filterByCategory = (filter, category, data) => {
-  return  category === 'all' ? data : data.filter((item) => item[filter] === category)
+  return category === 'Todos'
+    ? data
+    : data.filter((item) => item[filter] === category)
 }
 
 const convertToBarData = (data) => {
@@ -55,14 +49,20 @@ const convertToBarData = (data) => {
 }
 
 export default function SelectList({ filter, projectsData }) {
-  const [selectedCategory, setSelectedCategory] = useState('all')
-  const [filteredData, setFilteredData] = useState(convertToBarData(projectsData))
+  const [selectedCategory, setSelectedCategory] = useState('Todos')
+  const [filteredData, setFilteredData] = useState(
+    convertToBarData(projectsData)
+  )
+
   const categoriesList =
     filter === 'tipo'
       ? TypeCategories
       : filter === 'framework'
       ? frameworkCategories
       : LanguageCategories
+
+  useEffect(() => {
+  }, [categoriesList])
 
   useEffect(() => {
     setFilteredData(
@@ -79,8 +79,8 @@ export default function SelectList({ filter, projectsData }) {
           className="w-full"
         >
           {categoriesList.map((category) => (
-            <SelectItem key={category.key} value={category.key}>
-              {category.name}
+            <SelectItem key={category} value={category}>
+              {category}
             </SelectItem>
           ))}
         </Select>

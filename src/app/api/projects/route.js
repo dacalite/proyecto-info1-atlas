@@ -132,10 +132,9 @@ export async function PUT(req, res) {
       )
     }
 
-    const id = req.nextUrl.searchParams.get('id')
 
     const ProjectToUpdate = await Project.findOneAndUpdate(
-      { IdProyecto: id },
+      { IdProyecto },
       {
         IdProyecto,
         IdAplicacion,
