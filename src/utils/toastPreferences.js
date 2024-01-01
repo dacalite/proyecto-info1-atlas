@@ -20,4 +20,4 @@ export const ERROR_TOAST_STYLE = {
   }
   
   export const TOAST_DURATION = 2000
-  export const TOAST_POSITION = 'top-left'
+  export const TOAST_POSITION = 'bottom-left'

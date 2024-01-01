@@ -37,7 +37,7 @@ export default function InfoBar({ projectsData }) {
     const categories = [
       {
         title: 'Proyectos totales',
-        metric: projectsData ? projectsData.length : 'Cargando...',
+        metric: projectsData ? projectsData.length : 0,
       },
       {
         title: 'Breakpoints totales',
@@ -46,13 +46,13 @@ export default function InfoBar({ projectsData }) {
               (acc, project) => acc + project.Breakpoints.length,
               0
             )
-          : 'Cargando...',
+          : 0,
       },
       {
         title: 'Proyecto crítico',
         metric: projectWithMaxBreakpoints
           ? projectWithMaxBreakpoints.IdProyecto
-          : 'Cargando...',
+          : 'N/A',
       },
     ]
     setCategories(categories)
