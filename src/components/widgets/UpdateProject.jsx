@@ -53,7 +53,7 @@ function UpdateProject({ projectIds, appIds, projectsData, closeWidget }) {
       })
 
       setUpdatingProject(true)
-      await axios.put('http://localhost:3000/api/projects', formData)
+      await axios.put('/api/projects', formData)
       setUpdatingProject(false)
 
       toast.dismiss(loadingToast)

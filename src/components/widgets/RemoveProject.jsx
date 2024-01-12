@@ -32,7 +32,7 @@ function RemoveProject({ projectIds, closeWidget }) {
       })
 
       setDeletingProject(true)
-      await axios.delete(`http://localhost:3000/api/projects?id=${projectId}`)
+      await axios.delete(`/api/projects?id=${projectId}`)
       setDeletingProject(false)
 
       toast.dismiss(loadingToast)

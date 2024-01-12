@@ -44,7 +44,7 @@ function AddProject({ projectIds, appIds, closeWidget }) {
       })
 
       setCreatingProject(true)
-      await axios.post('http://localhost:3000/api/projects', formData)
+      await axios.post('/api/projects', formData)
       setCreatingProject(false)
       
       toast.dismiss(loadingToast)
